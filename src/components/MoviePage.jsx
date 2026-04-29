@@ -146,7 +146,7 @@ const MoviePage = () => {
                         <span className='text-white'>Discover </span>
                         <span className='text-amber-300 italic'>Cinema.</span>
                     </h1>
-                    <p className='text-gray-600 font-bold leading-8 italic md:text-xl md:px-5 md:leading-12'>10 curated films . 2 in your collection</p>
+                    <p className='text-gray-600 font-bold leading-8 italic md:text-xl md:px-5 md:leading-12'>Discover Movies. Save Favorites. Enjoy the Experience.</p>
                 </div>
 
                 <div>

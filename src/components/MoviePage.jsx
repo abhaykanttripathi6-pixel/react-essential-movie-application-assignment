@@ -139,7 +139,7 @@ const MoviePage = () => {
 
 
     return (
-        <header>
+        <div>
             <div className=' min-h-screen p-6 bg-[rgba(0,0,0,0.95)] md:px-15 md:py-10'>
                 <div>
                     <h1 className='text-4xl font-bold md:text-8xl'>
@@ -154,7 +154,7 @@ const MoviePage = () => {
                 </div>
 
             </div>
-        </header>
+        </div>
     )
 }
 

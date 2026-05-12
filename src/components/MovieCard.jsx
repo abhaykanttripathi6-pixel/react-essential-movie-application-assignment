@@ -2,30 +2,35 @@ import React, { useState } from 'react';
 import { FaStar } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 
-const MovieCard = ({moviesData,showFavourite}) => {
-
-    const [favouriteMovies, setFavouriteMovies] = useState([]);
+const MovieCard = ({moviesData, showFavourite, favouriteMovies, setFavouriteMovies}) => {
 
     const handleOnClick = (favMovie) => {
-        setFavouriteMovies([...favouriteMovies,favMovie]);
+
+        if(favouriteMovies.includes(favMovie)){
+            const verify = confirm('Do you want to remove this movie from your list ?');
+            if(verify){
+               const updatedFavMovie = favouriteMovies.filter((movie) => movie.id !== favMovie.id)
+               return setFavouriteMovies(updatedFavMovie);
+            }
+            return;
+        }
+        return setFavouriteMovies([...favouriteMovies,favMovie]);
     }
 
-    const showMoviesCard = showFavourite?favouriteMovies:moviesData;
 
-
+    if(showFavourite===true && favouriteMovies.length===0 ){
+        return <div className='h-50 text-md text-gray-400 font-bold grid place-content-center md:text-2xl'>Your list is empty !!</div>
+    }
+    
     if(moviesData.length===0){
         return <div className='h-50 text-md text-gray-400 font-bold grid place-content-center md:text-2xl'>Movie Not Found !!</div>
-    }
-
-    if(showFavourite===true && favouriteMovies.length===0){
-         return <div className='h-50 text-md text-gray-400 font-bold grid place-content-center md:text-2xl'>Your list is empty !!</div>
     }
    
     return (
         <>
             {
-                showMoviesCard.map(movie => {
-                    return <div key={movie.id} className=' w-80 my-8 mx-auto border-2 hover:border-amber-300 bg-[rgba(255,255,255,0.02)] rounded-sm hover:shadow-[1px_1px_20px_20px_rgba(255,210,48,0.1)] transition-all duration-600 hover:-translate-y-2'>
+               moviesData.map(movie => {
+                    return <div key={movie.id} className=' w-80 my-8 mx-auto border-2 hover:border-amber-300 bg-[rgba(255,255,255,0.02)] rounded-sm hover:shadow-[1px_1px_20px_20px_rgba(255,210,48,0.1)] transition-all duration-600 hover:-translate-y-2 sm:mx-0'>
                         <div className='relative'>
                             <figure>
                                 <img src={movie.poster} alt="movie-poster" className='h-95 w-full rounded-md' />

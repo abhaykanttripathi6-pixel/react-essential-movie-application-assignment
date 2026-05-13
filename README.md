@@ -1,2 +1,2 @@
 ## Live Deployment Link
-[Click Here](https://react-moviedatabase-application.vercel.app/)
+[Click Here](https://moviedatabaseminiapp.netlify.app/)

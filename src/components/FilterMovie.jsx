@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RxCross2 } from "react-icons/rx";
 import { IoIosSearch } from "react-icons/io";
+import { GrPowerCycle } from "react-icons/gr";
 import MovieCard from './MovieCard';
 
 const FilterMovie = ({ movies }) => {
@@ -20,15 +21,22 @@ const FilterMovie = ({ movies }) => {
 
     const handleShowFav = (val) => {
         if (val === showFavourite) return;
-        setShowFavourite(val)
+        setShowFavourite(val);
         setSearchMovie('');
-    }
+    };
 
     const handleResetInput = () => {
         if (searchMovie !== '') {
             setSearchMovie('');
         }
-    }
+    };
+
+    const handleReset = () => {
+        const verify = confirm('are your sure do you want to reset your list ?');
+        if(verify){
+            setFavouriteMovies([]);
+        }
+    };
 
     return (
         <>
@@ -52,12 +60,20 @@ const FilterMovie = ({ movies }) => {
                 </div>
             </div>
 
+            {
+                (showFavourite && (favouriteMovies.length !== 0)) &&
+                <div className='size-fit p-2 my-5 bg-gray-800 text-white flex items-center gap-1 rounded-lg cursor-pointer active:scale-95 transition-transform  duration-800' onClick={handleReset}>
+                    <span>Reset</span>
+                    <GrPowerCycle className='pt-0.5' />
+                </div>
+            }
+
             <div className=' grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-1'>
-                <MovieCard 
-                moviesData={searchMovie ? filteredMovies : moviesList} 
-                showFavourite={showFavourite}  
-                favouriteMovies={favouriteMovies}
-                setFavouriteMovies = {setFavouriteMovies}/>            
+                <MovieCard
+                    moviesData={searchMovie ? filteredMovies : moviesList}
+                    showFavourite={showFavourite}
+                    favouriteMovies={favouriteMovies}
+                    setFavouriteMovies={setFavouriteMovies} />
             </div>
         </>
     )
